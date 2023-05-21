@@ -1,5 +1,5 @@
 package AlgoritmosHash;
 
-public class Hash_RN {
+public class Hash_RN extends HashTable {
 
 }
