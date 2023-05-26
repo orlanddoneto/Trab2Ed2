@@ -24,7 +24,7 @@ public class Arquivo {
 		this.dataModificacao = dataModificacao;
 	}
 	
-	public Object chave(int criterio) {
+	public Object chaveOrdem(int criterio) {
     	List<Object> list = new ArrayList<>();
     	list.add(nome);
     	list.add(caminho);
@@ -36,7 +36,13 @@ public class Arquivo {
 		return list.get(criterio-1);
     	
     }
+
+	
+	public String getNome() {
+		return nome;
+	}
     
+	
 	
 	
 	

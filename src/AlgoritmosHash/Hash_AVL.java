@@ -1,6 +1,6 @@
 package AlgoritmosHash;
 
-public class Hash_AVL extends HashTable{
+public class Hash_AVL<K,V> implements HashTable<K,V>{
 
 	@Override
 	public int size() {
@@ -9,19 +9,25 @@ public class Hash_AVL extends HashTable{
 	}
 
 	@Override
-	public Object get(Object key) {
+	public V get(K key) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean insert(Object key, Object val) {
+	public boolean insert(K key, V val) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean remove(Object key) {
+	public boolean remove(K key) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean resize(int novo_tam) {
 		// TODO Auto-generated method stub
 		return false;
 	}

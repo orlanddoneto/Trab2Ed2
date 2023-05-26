@@ -3,28 +3,46 @@ package Algoritmos;
 import java.util.Comparator;
 
 public class BinTree<K extends Comparable<K>, V> {
-	private class Node {
+	public class NodeBin {
 		K key;
 		V value;
-		Node esq, dir;
+		NodeBin esq, dir;
+		NodeBin prox;
 
-		Node(K key, V value) {
+		public NodeBin(K key, V value) {
 			this.key = key;
 			this.value = value;
+			this.prox = null;
 
 		}
+		
+		public NodeBin getProx() {
+			return prox;
+		}
+		public void setProx(K key, V value) {
+			this.prox = new NodeBin(key,value);
+		}
+
+		public K getKey() {
+			return key;
+		}
+
+		public V getValue() {
+			return value;
+		}
+		
 	}
 
-	private Integer itensAdd;
-	private Node raiz;
+	
+	private NodeBin raiz;
 
-	public void inserir(K key, V value) {
-		Node novoNo = new Node(key, value);
+	public boolean inserir(K key, V value) {
+		NodeBin novoNo = new NodeBin(key, value);
 		if (raiz == null) {
 			raiz = novoNo;
 		} else {
-			Node temp1 = raiz;
-			Node temp2 = raiz;
+			NodeBin temp1 = raiz;
+			NodeBin temp2 = raiz;
 			while (temp1 != null && key != temp2.key) {
 				temp2 = temp1;
 
@@ -42,21 +60,24 @@ public class BinTree<K extends Comparable<K>, V> {
 				int compare = key.compareTo(temp2.key);
 				if (compare < 0) {
 					temp2.esq = novoNo;
+					return true;
 				} else if (compare > 0) {
 					temp2.dir = novoNo;
+					return true;
 				}
 			}
 
 		}
+		return false;
 	}
 
-	public Node remover(K key) {
+	public NodeBin remover(K key) {
 		if (key == null)
 			return null;
 		return remover(this.raiz, key);
 	}
 
-	private Node remover(Node atual, K key) {
+	private NodeBin remover(NodeBin atual, K key) {
 		if (atual == null) {
 			return null;
 		}
@@ -80,7 +101,7 @@ public class BinTree<K extends Comparable<K>, V> {
 				return atual.esq;
 			} else {
 				// Nó tem dois filhos
-				Node sucessor = obterMenorNo(atual.dir);
+				NodeBin sucessor = obterMenorNo(atual.dir);
 				atual.key = sucessor.key;
 				atual.value = sucessor.value;
 				atual.dir = remover(atual.dir, sucessor.key);
@@ -90,15 +111,15 @@ public class BinTree<K extends Comparable<K>, V> {
 		return atual;
 	}
 
-	public Node removeQualquer(Node no) {
+	public NodeBin removeQualquer(NodeBin no) {
 		while (no.esq != null)
 			no = no.esq;
 
-		Node result = remover(no, no.key);
+		NodeBin result = remover(no, no.key);
 		return result;
 	}
 
-	private Node obterMenorNo(Node no) {
+	private NodeBin obterMenorNo(NodeBin no) {
 		if (no == null || no.esq == null) {
 			return no;
 		}
@@ -106,7 +127,7 @@ public class BinTree<K extends Comparable<K>, V> {
 		return obterMenorNo(no.esq);
 	}
 
-	private V get(Node no, K key) {
+	private V get(NodeBin no, K key) {
 		if (no == null || no.key == null || no.value == null) {
 			return null;
 		}
@@ -136,5 +157,10 @@ public class BinTree<K extends Comparable<K>, V> {
 		}
 		return get(key) != null;
 	}
+	
+	public NodeBin getRaiz() {
+    	return this.raiz;
+    }
+	
 
 }
