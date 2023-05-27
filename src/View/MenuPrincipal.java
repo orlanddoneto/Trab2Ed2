@@ -23,9 +23,11 @@ public class MenuPrincipal {
 		
 		int cont = 0;
 		for(Arquivo obj : lerCSV.getLines()) {
+			System.out.println(Math.abs((obj.getNome()).hashCode()) %tam);
+			System.out.println(Math.abs(obj.getNome().hashCode()));
 			hashTable.insert(obj.getNome(), obj);
 			cont++;
-			if (cont==10)
+			if (cont==tam)
 				break;
 			System.out.println("inseriu");
 		}

@@ -34,7 +34,8 @@ public class Hash_Bin<K extends Comparable<K>, V> implements HashTable<K,V>{
 
 	@Override
 	public boolean insert(K key, V val) {
-		int i = hash(key);
+		int hash = hash(key);
+		int i = hash;
     	boolean result;
     	if (vetor[i]==null) {
     		vetor[i] = new BinTree<K,V>();
@@ -50,8 +51,9 @@ public class Hash_Bin<K extends Comparable<K>, V> implements HashTable<K,V>{
     		
     		while (vetor[i] != null) {
                 j++;
-                i = metodoQuadratico(i, j);
+                i =(hash + j * j) % tamanho;
             }
+    		vetor[i] = new BinTree<K,V>();
     	}
     	else if(metodo == 2) {
     		BinTree.NodeBin current = vetor[i].getRaiz();
@@ -83,7 +85,7 @@ public class Hash_Bin<K extends Comparable<K>, V> implements HashTable<K,V>{
 	}
 	
 	private int hash(K key) {
-        return key.hashCode() % this.tamanho;
+        return Math.abs(key.hashCode()) % this.tamanho;
 		
     }
 
@@ -104,11 +106,6 @@ public class Hash_Bin<K extends Comparable<K>, V> implements HashTable<K,V>{
         this.tamanho = novoHash.tamanho;
         return true;
 	}
-
-	
-	private int metodoQuadratico(int index, int attempt) {
-        return (index + attempt * attempt) % tamanho;
-    }
 
 	
 }
