@@ -4,27 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import AlgoritmosHash.HashTable;
-import AlgoritmosHash.Hash_AVL;
-import AlgoritmosHash.Hash_Bin;
-import AlgoritmosHash.Hash_RN;
+import AlgoritmosHash.Hash_Encadeamento;
+import AlgoritmosHash.Hash_Quadratico;
 
 public class Gerenciador {
 	private HashTable hashTable;
 	private int tamanhoIni = 100;
-	private int metodoCol = 1;
 	
 	
 	
-	public Gerenciador(int tamanhoIni, int metodo) {
+	public Gerenciador(int tamanhoIni) {
 		this.tamanhoIni = tamanhoIni;
-		this.metodoCol = metodo;
 	}
+	public Gerenciador() {}
 
 	public void setStrategy(int metodoHash) {
 		List<HashTable> metodos = new ArrayList<>();
-		metodos.add(new Hash_AVL());
-		metodos.add(new Hash_Bin(tamanhoIni, metodoCol));
-		metodos.add(new Hash_RN());
+		metodos.add(new Hash_Quadratico(tamanhoIni));
+		metodos.add(new Hash_Encadeamento(tamanhoIni));
 		hashTable = metodos.get(metodoHash - 1);
 	}
 

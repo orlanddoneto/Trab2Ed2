@@ -1,36 +1,43 @@
 package View;
 
+import java.util.LinkedList;
+
 import AlgoritmosHash.HashTable;
 import Entidade.Arquivo;
-import ManagerCSV.GeradorCSV;
 import ManagerCSV.LeitorCSV;
 import Servicos.Gerenciador;
 
 public class MenuPrincipal {
 
 	public static void main(String[] args) {
-		GeradorCSV csv = new GeradorCSV();
-		csv.gerarCSV();
+		//GeradorCSV csv = new GeradorCSV();
+		//csv.gerarCSV();
 		LeitorCSV lerCSV = new LeitorCSV();
 		lerCSV.lerCSV();
 		
-		int metodoCol = 1;
 		int tam = 10;
 		
-		Gerenciador gerente = new Gerenciador(tam, metodoCol);
+		Gerenciador gerente = new Gerenciador(tam);
 		gerente.setStrategy(2);
 		HashTable hashTable = gerente.getHashTable();
 		
 		int cont = 0;
 		for(Arquivo obj : lerCSV.getLines()) {
-			System.out.println(Math.abs((obj.getNome()).hashCode()) %tam);
-			System.out.println(Math.abs(obj.getNome().hashCode()));
 			hashTable.insert(obj.getNome(), obj);
 			cont++;
+			System.out.println("inseriu");
 			if (cont==tam)
 				break;
-			System.out.println("inseriu");
 		}
+		System.out.println(hashTable.get("PegueUmNomeAleatórioNoCSVqueVaiSerGerado"));
+		hashTable.insert("gvlkksdo", hashTable.get("PegueUmNomeAleatórioNoCSVqueVaiSerGerado"));
+		System.out.println(hashTable.remove("PegueUmNomeAleatórioNoCSVqueVaiSerGerado"));
+		System.out.println(hashTable.get("PegueUmNomeAleatórioNoCSVqueVaiSerGerado"));
+		
+		
+		
+		
+		
 		
 
 	}

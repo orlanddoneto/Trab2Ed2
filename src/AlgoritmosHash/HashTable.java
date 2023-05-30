@@ -1,10 +1,12 @@
 package AlgoritmosHash;
 
-public interface HashTable <K, V>{
+import Entidade.Arquivo;
+
+public interface HashTable{
 	public int size();
-	public V get(K key);
-	public boolean insert(K key, V val);
-	public boolean remove(K key);
+	public Arquivo get(String key);
+	public boolean insert(String key, Arquivo val);
+	public boolean remove(String key);
 	public boolean resize(int novo_tam);
 	
 

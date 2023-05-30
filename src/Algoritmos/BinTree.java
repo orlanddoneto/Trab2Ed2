@@ -56,7 +56,8 @@ public class BinTree<K extends Comparable<K>, V> {
 			}
 			if (key == temp2.key) {
 				System.out.println("Elemento existente na árvore.");
-			} else {
+			} 
+			else {
 				int compare = key.compareTo(temp2.key);
 				if (compare < 0) {
 					temp2.esq = novoNo;
@@ -161,6 +162,8 @@ public class BinTree<K extends Comparable<K>, V> {
 	public NodeBin getRaiz() {
     	return this.raiz;
     }
+	
+	
 	
 
 }

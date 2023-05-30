@@ -23,6 +23,7 @@ public class Arquivo {
 		this.dataCriacao = dataCriacao;
 		this.dataModificacao = dataModificacao;
 	}
+	public Arquivo() {};
 	
 	public Object chaveOrdem(int criterio) {
     	List<Object> list = new ArrayList<>();
@@ -42,6 +43,13 @@ public class Arquivo {
 		return nome;
 	}
     
+	 public String toString(){
+	        return "Nome: " + nome +
+	                "\nCaminho: " + caminho +
+	                "\nTipo: " + tipo +
+	                "\nTamanho: " + tamanho +
+	                "\nData: " + dataCriacao +"\n";
+	    }
 	
 	
 	
