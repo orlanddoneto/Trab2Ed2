@@ -67,7 +67,7 @@ public class LeitorCSV {
 	    	String nome = data[0];
 	    	String caminho = data[1];
 	    	String tipo = data[2];
-	    	String tamanho = data[3];
+	    	Double tamanho = Double.parseDouble(data[3]);
 	    	LocalDate dataCriacao = LocalDate.parse(data[4]);
 	    	LocalDate dataModificacao = LocalDate.parse(data[5]);
 	    	

@@ -7,9 +7,11 @@ public class Hash_Quadratico implements HashTable {
 
 	private int elementosInseridos;
 	private int tamanho;
-	private Entry[] table;
 	private int resizes;
-
+	private double fatorResize = 70;
+	private Entry[] table;
+	
+	
 	public class Entry {
 		private String key;
 		private Arquivo value;
@@ -58,7 +60,7 @@ public class Hash_Quadratico implements HashTable {
 		if (table[i] == null) {
 			table[i] = new Entry(key, val);
 			this.elementosInseridos++;
-			if (this.elementosInseridos >= this.tamanho / 2)
+			if (this.elementosInseridos >= this.tamanho *(fatorResize/100))
 				resize(this.tamanho * 2);
 			return true;
 		}
@@ -77,7 +79,7 @@ public class Hash_Quadratico implements HashTable {
 		}
 		table[i] = new Entry(key, val);
 		this.elementosInseridos++;
-		if (this.elementosInseridos >= this.tamanho / 2)
+		if (this.elementosInseridos >= this.tamanho *(fatorResize/100))
 			resize(this.tamanho * 2);
 		return true;
 	}

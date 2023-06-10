@@ -9,11 +9,11 @@ public class Arquivo {
 	private String nome;
 	private String caminho;
 	private String tipo;
-	private String tamanho;
+	private Double tamanho;
 	private LocalDate dataCriacao;
 	private LocalDate dataModificacao;
 	
-	public Arquivo(String nome, String caminho, String tipo, String tamanho, LocalDate dataCriacao,
+	public Arquivo(String nome, String caminho, String tipo, Double tamanho, LocalDate dataCriacao,
 			LocalDate dataModificacao) {
 		
 		this.nome = nome;
@@ -28,12 +28,10 @@ public class Arquivo {
 	public Object chaveOrdem(int criterio) {
     	List<Object> list = new ArrayList<>();
     	list.add(nome);
-    	list.add(caminho);
     	list.add(tipo);
     	list.add(tamanho);
-    	list.add(dataCriacao);
     	list.add(dataModificacao);
-   
+    	list.add(dataCriacao);
 		return list.get(criterio-1);
     	
     }

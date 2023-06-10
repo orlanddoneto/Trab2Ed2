@@ -1,26 +1,18 @@
 package Algoritmos;
 
 import java.util.Comparator;
+import java.util.List;
 
-public class BinTree<K extends Comparable<K>, V> {
+public class BinTree<K extends Comparable<K>, V> extends Tree<K,V> {
 	public class NodeBin {
 		K key;
 		V value;
 		NodeBin esq, dir;
-		NodeBin prox;
 
 		public NodeBin(K key, V value) {
 			this.key = key;
 			this.value = value;
-			this.prox = null;
 
-		}
-		
-		public NodeBin getProx() {
-			return prox;
-		}
-		public void setProx(K key, V value) {
-			this.prox = new NodeBin(key,value);
 		}
 
 		public K getKey() {
@@ -35,7 +27,10 @@ public class BinTree<K extends Comparable<K>, V> {
 
 	
 	private NodeBin raiz;
-
+	
+	public BinTree() {}
+	
+	@Override
 	public boolean inserir(K key, V value) {
 		NodeBin novoNo = new NodeBin(key, value);
 		if (raiz == null) {
@@ -71,7 +66,7 @@ public class BinTree<K extends Comparable<K>, V> {
 		}
 		return false;
 	}
-
+	
 	public NodeBin remover(K key) {
 		if (key == null)
 			return null;
@@ -163,7 +158,17 @@ public class BinTree<K extends Comparable<K>, V> {
     	return this.raiz;
     }
 	
-	
-	
+	@Override
+	public void inorderTraversal() {
+		inorderTraversal(raiz);
+	}
+
+	private void inorderTraversal(NodeBin node) {
+		if (node != null) {
+			inorderTraversal(node.esq);
+			System.out.println(node.value);
+			inorderTraversal(node.dir);
+		}
+	}
 
 }

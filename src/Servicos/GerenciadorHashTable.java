@@ -7,16 +7,14 @@ import AlgoritmosHash.HashTable;
 import AlgoritmosHash.Hash_Encadeamento;
 import AlgoritmosHash.Hash_Quadratico;
 
-public class Gerenciador {
+public class GerenciadorHashTable {
 	private HashTable hashTable;
 	private int tamanhoIni = 100;
 	
-	
-	
-	public Gerenciador(int tamanhoIni) {
+	public GerenciadorHashTable(int tamanhoIni) {
 		this.tamanhoIni = tamanhoIni;
 	}
-	public Gerenciador() {}
+	public GerenciadorHashTable() {}
 
 	public void setStrategy(int metodoHash) {
 		List<HashTable> metodos = new ArrayList<>();
