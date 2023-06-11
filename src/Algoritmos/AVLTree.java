@@ -60,20 +60,20 @@ public class AVLTree<K extends Comparable<K>, V> extends Tree<K, V> {
 
 		int balanceamento = getBalanceamento(raiz);
 
-		if (balanceamento > 2 && key.compareTo(raiz.esq.key) < 0) {
+		if (balanceamento > 1 && key.compareTo(raiz.esq.key) < 0) {
 			return rotacaoDir(raiz);
 		}
 
-		if (balanceamento < -2 && key.compareTo(raiz.dir.key) >= 0) {
+		if (balanceamento < -1 && key.compareTo(raiz.dir.key) >= 0) {
 			return rotacaoEsq(raiz);
 		}
 
-		if (balanceamento > 2 && key.compareTo(raiz.esq.key) > 0) {
+		if (balanceamento > 1 && key.compareTo(raiz.esq.key) > 0) {
 			return duplaRotacaoDir(raiz);
 
 		}
 
-		if (balanceamento < -2 && key.compareTo(raiz.dir.key) <= 0) {
+		if (balanceamento < -1 && key.compareTo(raiz.dir.key) <= 0) {
 			return duplaRotacaoEsq(raiz);
 		}
 
