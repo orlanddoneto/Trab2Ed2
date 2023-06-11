@@ -50,7 +50,9 @@ public class BinTree<K extends Comparable<K>, V> extends Tree<K,V> {
 				}
 			}
 			if (key == temp2.key) {
-				System.out.println("Elemento existente na árvore.");
+				novoNo.dir = temp2.dir;
+				temp2.dir = novoNo;
+				return true;
 			} 
 			else {
 				int compare = key.compareTo(temp2.key);
@@ -67,10 +69,14 @@ public class BinTree<K extends Comparable<K>, V> extends Tree<K,V> {
 		return false;
 	}
 	
-	public NodeBin remover(K key) {
+	@Override
+	public boolean remover(K key) {
 		if (key == null)
-			return null;
-		return remover(this.raiz, key);
+			return false;
+		else { 
+			remover(this.raiz, key);
+			return true;
+		}
 	}
 
 	private NodeBin remover(NodeBin atual, K key) {

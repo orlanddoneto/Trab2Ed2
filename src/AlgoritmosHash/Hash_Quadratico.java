@@ -48,7 +48,7 @@ public class Hash_Quadratico implements HashTable {
 			}
 			temp = table[i];
 		}
-		System.out.println("Elemento inexistente!");
+		//System.out.println("Elemento inexistente!");
 		return null;
 	}
 
@@ -68,7 +68,7 @@ public class Hash_Quadratico implements HashTable {
 		int j = 0;
 		while (table[i] != null) {
 			if (table[i].key.equals(key)) {
-				System.out.println("Elemento existente!");
+				//System.out.println("Elemento existente!");
 				return false;
 			}
 			j++;
@@ -102,7 +102,7 @@ public class Hash_Quadratico implements HashTable {
 					i = (i + tamanho) % tamanho; // Ajuste para um valor não negativo
 			}
 		}
-		System.out.println("Não foi possível remover!");
+		//System.out.println("Não foi possível remover!");
 		return result;
 	}
 

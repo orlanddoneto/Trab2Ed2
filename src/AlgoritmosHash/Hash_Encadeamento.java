@@ -47,7 +47,7 @@ public class Hash_Encadeamento implements HashTable {
 			}
 		}
 
-		System.out.println("Elemento inexistente!");
+		//System.out.println("Elemento inexistente!");
 		return null;
 	}
 
@@ -67,7 +67,7 @@ public class Hash_Encadeamento implements HashTable {
 		else{
 			for(Entry no : table[i]) {
 				if(no.key.equals(key)) {
-					System.out.println("Elemento existente!");
+					//System.out.println("Elemento existente!");
 					return false;
 				}
 			}

@@ -9,12 +9,12 @@ public class Arquivo {
 	private String nome;
 	private String caminho;
 	private String tipo;
-	private Double tamanho;
-	private LocalDate dataCriacao;
-	private LocalDate dataModificacao;
+	private Integer tamanho;
+	private LocalDateTime dataCriacao;
+	private LocalDateTime dataModificacao;
 	
-	public Arquivo(String nome, String caminho, String tipo, Double tamanho, LocalDate dataCriacao,
-			LocalDate dataModificacao) {
+	public Arquivo(String nome, String caminho, String tipo, Integer tamanho, LocalDateTime dataCriacao,
+			LocalDateTime dataModificacao) {
 		
 		this.nome = nome;
 		this.caminho = caminho;
@@ -30,8 +30,9 @@ public class Arquivo {
     	list.add(nome);
     	list.add(tipo);
     	list.add(tamanho);
-    	list.add(dataModificacao);
     	list.add(dataCriacao);
+    	list.add(dataModificacao);
+    	
 		return list.get(criterio-1);
     	
     }
@@ -46,7 +47,8 @@ public class Arquivo {
 	                "\nCaminho: " + caminho +
 	                "\nTipo: " + tipo +
 	                "\nTamanho: " + tamanho +
-	                "\nData: " + dataCriacao +"\n";
+	                "\nData Criação: " + dataCriacao +
+	                "\nData Modificação: " + dataModificacao +"\n";
 	    }
 	
 	

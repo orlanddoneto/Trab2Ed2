@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
@@ -24,8 +25,8 @@ public class GeradorCSV {
 				String type = generateRandomFileType();
 				String path = "C:\\Users\\Cliente\\eclipse-workspace\\Job2_ED2\\"+name+"."+type;
 				int size = random.nextInt(1,100);
-				LocalDate creationTime = generateRandomDate();
-				LocalDate modificationTime = generateRandomDate();
+				LocalDateTime creationTime = generateRandomDate();
+				LocalDateTime modificationTime = generateRandomDate();
 				while ((creationTime.compareTo(modificationTime))>0) {
 					modificationTime = generateRandomDate();
 				}
@@ -63,15 +64,18 @@ public class GeradorCSV {
 		return fileTypes[index];
 	}
 
-	private static LocalDate generateRandomDate() {
-		LocalDate startDate = LocalDate.of(2023, 4, 1);
-		LocalDate endDate = LocalDate.now();
-
-		Random random = new Random();
-		long start = startDate.toEpochDay();
-		long end = endDate.toEpochDay();
-		long randomDay = start + random.nextInt((int) (end - start));
-
-		return LocalDate.ofEpochDay(randomDay);
+	private static LocalDateTime generateRandomDate() {
+	    LocalDate startDate = LocalDate.of(2023, 4, 1);
+	    LocalDate endDate = LocalDate.now();
+	    long start = startDate.toEpochDay();
+	    long end = endDate.toEpochDay();
+	    
+	    Random random = new Random();
+	    long randomDay = start + random.nextInt((int) (end - start));
+	    
+	    LocalDate randomDate = LocalDate.ofEpochDay(randomDay);
+	    LocalTime randomTime = LocalTime.of(random.nextInt(24), random.nextInt(60), random.nextInt(60));
+	    
+	    return LocalDateTime.of(randomDate, randomTime);
 	}
 }
