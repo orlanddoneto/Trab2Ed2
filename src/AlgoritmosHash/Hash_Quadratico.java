@@ -7,7 +7,7 @@ public class Hash_Quadratico implements HashTable {
 
 	private int elementosInseridos;
 	private int tamanho;
-	private int resizes;
+	private long resizes = 0L;
 	private double fatorResize = 70;
 	private Entry[] table;
 	
@@ -124,4 +124,13 @@ public class Hash_Quadratico implements HashTable {
 		return true;
 	}
 
+	@Override
+	public long getResizes() {
+		return resizes;
+	}
+	
+	
+
 }
+
+

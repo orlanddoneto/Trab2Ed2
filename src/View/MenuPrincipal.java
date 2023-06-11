@@ -37,16 +37,19 @@ public class MenuPrincipal {
 		//insere elementos na hashtable
 		//int cont = 0;
 		
+		long inicioRelogio = System.currentTimeMillis();
 		for(Arquivo obj : lerCSV.getLines()) {
 			hashTable.insert(obj.getNome(), obj);
 			//cont++;2
 			//if (cont==tam)
 				//break;
 		}
+		long FimRelogio = System.currentTimeMillis();
+		long resultInsercaoHashTable = FimRelogio - inicioRelogio;
 		System.out.printf("Qual árvore você vai guardar os arquivos?\n[1] - Arvore Binária\n[2] - Árvore AVL\n[3] - Árvore Rubro-Negra");
 		int arvoreEscolhida = sc.nextInt();
 		GerenciadorArvores gerenteTree = new GerenciadorArvores();
-		gerenteTree.setArvore(1);
+		gerenteTree.setArvore(arvoreEscolhida);
 		Tree arvore = gerenteTree.getTree();
 		
 		
@@ -68,7 +71,9 @@ public class MenuPrincipal {
 		String busca = sc.next();
 		String[] temp = busca.split(";");
 		List<String> list = Arrays.asList(temp);
+		Object classe = null;
 		
+		inicioRelogio = System.currentTimeMillis();
 		for(String nome : list){
 			if(hashTable.get(nome)!=null)
 				arvore.inserir(hashTable.get(nome).chaveOrdem(criterioOrdem), hashTable.get(nome));
@@ -76,22 +81,50 @@ public class MenuPrincipal {
 				System.out.println();
 				System.out.println("Arquivo "+"'"+nome+"'"+" Inexistente");
 			}
+			classe = hashTable.get(nome).chaveOrdem(criterioOrdem);
 		}
-		System.out.println();
-		arvore.inorderTraversal(); //imprime os valores, em ordem, que estão contidos na árvore
+		FimRelogio = System.currentTimeMillis();
+		long resultInsercaoTree = FimRelogio - inicioRelogio;
 		
+		System.out.println();
+		inicioRelogio = System.currentTimeMillis();
+		arvore.inorderTraversal(); //imprime os valores, em ordem, que estão contidos na árvore
+		FimRelogio = System.currentTimeMillis();
+		long resultBuscaTree = FimRelogio - inicioRelogio;
 		System.out.println("Você quer remover algum arquivo do resultado da busca? [y/n]");
 		char decisaoRemov = sc.next().charAt(0);
 		
 		
 		if(decisaoRemov == 'y') {
 			System.out.println("Arquivo a ser removido: ");
-			String arquivoMorto = sc.next();
-			arvore.remover(arquivoMorto);
+			String arquivoRemovido = sc.next();
+			
+			//temp2.getClass();
+			
+			arvore.remover(transformaClasse(arquivoRemovido,classe));
+			arvore.inorderTraversal();
 		}
-		else
-			System.out.println("Informações técnicas: "); // coisas do relatório
+		
+		System.out.printf("Informações técnicas: \nResizes da árvore: %d\nTempo de inserção da hashTable: %d\nTempo de inserção (10.000 itens) na árvore: %d\nTempo de busca na árvore: %d",
+				hashTable.getResizes(), resultInsercaoHashTable,resultInsercaoTree,resultBuscaTree); // coisas do relatório
 
+	}
+	
+	private static Object transformaClasse (String a, Object b) {
+		if(b.getClass().equals(String.class)){
+			return (String)a;
+		}
+		
+		if(b.getClass().equals(Integer.class)){
+			return Integer.parseInt(a);
+		}
+		
+		if(b.getClass().equals(Double.class)){
+			return Double.parseDouble(a);
+		}
+		if(b.getClass().equals(LocalDateTime.class))
+			return LocalDateTime.parse(a);
+		return null;
 	}
 
 }

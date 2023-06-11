@@ -100,11 +100,12 @@ public class RBNTree<K extends Comparable<K>, V> extends Tree<K,V> {
 			h.cor = true;
 	}
 	
-	public Node procuraNo(K chave) {
+	@Override
+	public V get(K chave) {
 		Node no = this.raiz;
 		while (no!=null) {
 			if ((int)chave == (int)no.chave)
-				return no;
+				return no.valor;
 			else if ((int)chave < (int)no.chave)
 				no = no.esq;
 			else
@@ -119,22 +120,27 @@ public class RBNTree<K extends Comparable<K>, V> extends Tree<K,V> {
 		
 		while (no != null) {
 			pai = no;
-			if ((int)chave < (int)no.chave)
+			int compare = chave.compareTo(no.chave);
+			if (compare < 0)
 				no = no.esq;
-			else if ((int)chave > (int)no.chave)
+			else if (compare > 0)
 				no = no.dir;
 			else
-				return false;
+				no = no.dir;
 		}
 		
 		Node newnode = new Node(chave, val);
 		newnode.cor = RED;
-		if (pai==null)
+		if (pai==null) {
 			this.raiz = newnode;
-		else if ((int)chave < (int)pai.chave)
-			pai.esq = newnode;
-		else
-			pai.dir = newnode;
+		}
+		else {
+			int compare = chave.compareTo(pai.chave); 
+			if (compare < 0)
+				pai.esq = newnode;
+			else
+				pai.dir = newnode;
+		}
 		newnode.pai = pai;
 		arrumaInsert(newnode);
 		return true;
@@ -204,8 +210,9 @@ public class RBNTree<K extends Comparable<K>, V> extends Tree<K,V> {
 	
 	private void deleteNo(K chave) {
 		Node no = this.raiz;
-		while (no!=null && (int)no.chave != (int)chave) {
-			if ((int)chave < (int)no.chave)
+		while (no!=null && no.chave != chave) {
+			int compare = chave.compareTo(no.chave);
+			if (compare < 0)
 				no = no.esq;
 			else
 				no = no.dir;

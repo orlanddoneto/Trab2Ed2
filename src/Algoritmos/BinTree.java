@@ -128,7 +128,7 @@ public class BinTree<K extends Comparable<K>, V> extends Tree<K,V> {
 
 		return obterMenorNo(no.esq);
 	}
-
+	
 	private V get(NodeBin no, K key) {
 		if (no == null || no.key == null || no.value == null) {
 			return null;
@@ -144,7 +144,7 @@ public class BinTree<K extends Comparable<K>, V> extends Tree<K,V> {
 			return no.value;
 		}
 	}
-
+	@Override
 	public V get(K key) {
 		if (key == null) {
 			return null;

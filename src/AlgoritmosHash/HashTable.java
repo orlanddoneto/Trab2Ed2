@@ -8,6 +8,7 @@ public interface HashTable{
 	public boolean insert(String key, Arquivo val);
 	public boolean remove(String key);
 	public boolean resize(int novo_tam);
+	public long getResizes();
 	
 
 }

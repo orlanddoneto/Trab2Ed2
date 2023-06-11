@@ -8,7 +8,7 @@ public class Hash_Encadeamento implements HashTable {
 
 	private int elementosInseridos;
 	private int tamanho;
-	private int resizes;
+	private long resizes = 0L;
 	private double fatorResize = 70;
 	private LinkedList<Entry> [] table;
 	
@@ -111,5 +111,12 @@ public class Hash_Encadeamento implements HashTable {
 		this.tamanho = novoHash.tamanho;
 		return true;
 	}
+
+	@Override
+	public long getResizes() {
+		return resizes;
+	}
+	
+	
 
 }
