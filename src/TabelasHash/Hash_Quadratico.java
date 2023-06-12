@@ -1,4 +1,4 @@
-package AlgoritmosHash;
+package TabelasHash;
 
 import Algoritmos.BinTree;
 import Entidade.Arquivo;

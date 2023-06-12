@@ -3,9 +3,9 @@ package Servicos;
 import java.util.ArrayList;
 import java.util.List;
 
-import AlgoritmosHash.HashTable;
-import AlgoritmosHash.Hash_Encadeamento;
-import AlgoritmosHash.Hash_Quadratico;
+import TabelasHash.HashTable;
+import TabelasHash.Hash_Encadeamento;
+import TabelasHash.Hash_Quadratico;
 
 public class GerenciadorHashTable {
 	private HashTable hashTable;
