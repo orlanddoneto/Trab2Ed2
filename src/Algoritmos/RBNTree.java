@@ -104,9 +104,10 @@ public class RBNTree<K extends Comparable<K>, V> extends Tree<K,V> {
 	public V get(K chave) {
 		Node no = this.raiz;
 		while (no!=null) {
-			if ((int)chave == (int)no.chave)
+			int compare = chave.compareTo(no.chave);
+			if (compare == 0)
 				return no.valor;
-			else if ((int)chave < (int)no.chave)
+			else if (compare < 0)
 				no = no.esq;
 			else
 				no = no.dir;
